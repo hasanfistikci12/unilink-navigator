@@ -103,7 +103,8 @@ body {
   font-size: var(--font-size-base);
   line-height: 1.7;
   color: var(--color-text-primary);
-  background-color: var(--color-background);
+  background-color: #FF6B35;
+  /* Orange background as requested */
   min-height: 100vh;
 }
 
@@ -798,52 +799,146 @@ p {
   align-items: center;
 }
 
-.justify-center {
-  justify-content: center;
+/* HERO TEXT */
+.text-mask-hero {
+  font-family: 'Impact', 'Anton', 'Arial Black', 'Arial', sans-serif;
+  font-size: 11.5vw !important;
+  /* Reduced 20% again */
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  display: block;
+
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  background: none !important;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
 }
 
-.gap-sm {
-  gap: var(--spacing-sm);
-}
-
-.gap-md {
-  gap: var(--spacing-md);
-}
-
-.gap-lg {
-  gap: var(--spacing-lg);
+@media (min-width: 1024px) {
+  .text-mask-hero {
+    font-size: 13vw !important;
+    /* Reduced 20% again */
+    line-height: 0.9;
+  }
 }
 
 /* ============================================
-   ANIMATIONS
+   SUCCESS STORIES - EXPANDING CARDS
    ============================================ */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+.stories-container {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  gap: 15px;
+  /* Increased gap */
+  padding: 0 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.story-card {
+  flex: 1;
+  border-radius: 50px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.4, 1);
+  /* Slower, more premium feel */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-width: 80px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.animate-fade-in {
-  animation: fadeIn var(--transition-base);
+.story-card:hover {
+  flex: 5;
 }
 
-.animate-slide-up {
-  animation: slideUp var(--transition-slow);
+.story-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 60px 40px;
+  /* Slightly more padding */
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.6) 40%,
+      rgba(0, 0, 0, 0.2) 80%,
+      transparent 100%);
+  backdrop-filter: blur(15px);
+  /* Slightly stronger blur */
+  -webkit-backdrop-filter: blur(15px);
+
+  /* The "Magic" for soft blur edges */
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 75%, transparent 100%);
+  mask-image: linear-gradient(to top, black 0%, black 75%, transparent 100%);
+
+  color: white;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+  pointer-events: none;
+}
+
+.story-card:hover .story-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.story-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .stories-container {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+
+  .story-card {
+    height: 100px;
+    /* Thicker strips on mobile */
+    width: 100%;
+    border-radius: 25px;
+    flex: none;
+    /* Disable flex growth on mobile vertical layout for base */
+  }
+
+  .story-card:hover {
+    flex: none;
+    height: 400px;
+    /* Expand height instead */
+  }
+
+  .story-content {
+    padding: 20px;
+  }
 }
