@@ -1,65 +1,116 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
+import EmergencyButton from '@/components/EmergencyButton';
+import { Shield, Phone, Heart } from 'lucide-react';
 
-export default function Home() {
+export default function SecurityGate() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="page-wrapper">
+      {/* Hero Section */}
+      <div className="hero-section">
+        <div className="container">
+          <div className="hero-content">
+            <div className="hero-text">
+              <h1 className="hero-title">Unilink Navigator</h1>
+              <p className="hero-subtitle">
+                Güvenli Destek Platformu
+              </p>
+              <p className="hero-description">
+                Anonim, güvenli ve hızlı erişim. Yardıma ihtiyacın olduğunda yanındayız.
+              </p>
+            </div>
+            <div className="hero-image">
+              <Image
+                src="/hero-safety.png"
+                alt="Güvenli destek"
+                width={600}
+                height={400}
+                priority
+                style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-xl)' }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        {/* Safety Check */}
+        <div className="card mb-xl animate-slide-up">
+          <div className="flex items-center gap-md mb-md">
+            <Shield size={32} color="var(--color-primary)" />
+            <h2 className="mb-0">Şu an güvende misin?</h2>
+          </div>
+
+          <div className="grid gap-md">
+            <Link href="/home" className="btn btn-safe">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Evet, devam et
+            </Link>
+
+            <Link href="/home" className="btn btn-uncertain">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Emin değilim
+            </Link>
+
+            <Link href="/emergency" className="btn btn-danger">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              Hayır — acil yardıma git
+            </Link>
+          </div>
+        </div>
+
+        {/* Emergency Contacts - Always Visible */}
+        <div className="card animate-slide-up" style={{ animationDelay: '100ms' }}>
+          <div className="flex items-center gap-md mb-md">
+            <Phone size={28} color="var(--color-danger)" />
+            <h3 className="mb-0">Acil Yardım Hatları</h3>
+          </div>
+          <div className="grid gap-md">
+            <EmergencyButton
+              number="112"
+              title="Acil Yardım"
+              description="Polis / Ambulans / İtfaiye"
+              variant="danger"
+            />
+
+            <EmergencyButton
+              number="116 006"
+              title="Ohvriabi"
+              description="7/24 Mağdur Destek Hattı"
+              variant="primary"
+            />
+
+            <EmergencyButton
+              number="116 111"
+              title="Lasteabi"
+              description="7/24 Çocuk Yardım Hattı"
+              variant="primary"
+            />
+          </div>
+        </div>
+
+        {/* Anonymity Notice */}
+        <div className="text-center mt-xl" style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+          <div className="flex items-center justify-center gap-sm mb-sm">
+            <Heart size={16} />
+            <strong>Anonim kullanılır.</strong>
+          </div>
+          <p className="mb-0">
+            Hesap gerekmez. Kimlik istemiyoruz.<br />
+            Yazdıkların oturum bitince silinir.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
