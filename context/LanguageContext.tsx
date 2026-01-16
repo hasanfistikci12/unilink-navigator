@@ -18,7 +18,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     // Load saved language on mount
     useEffect(() => {
         const savedLang = localStorage.getItem('unilink-lang') as Language;
-        if (savedLang && ['tr', 'et', 'ru', 'en'].includes(savedLang)) {
+        if (savedLang && ['tr', 'et', 'ru', 'en', 'ua', 'ar'].includes(savedLang)) {
             setLanguage(savedLang);
         }
     }, []);

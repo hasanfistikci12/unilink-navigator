@@ -2,8 +2,11 @@
 
 import Link from 'next/link';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function SimpleNavbar() {
+    const { t } = useLanguage();
+
     return (
         <nav
             style={{
@@ -22,36 +25,35 @@ export default function SimpleNavbar() {
             }}
         >
             {/* Logo */}
-            <Link href="/" style={{
-                fontSize: '1.25rem',
-                fontWeight: 'bold',
-                color: 'white',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em'
-            }}>
-                UNILINK NAVIGATOR
+            <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                <img
+                    src="https://raw.githubusercontent.com/hasanfistikci12/logo-unilink/refs/heads/main/logo_white.png"
+                    alt="Unilink Navigator"
+                    style={{ height: '40px', width: 'auto' }}
+                />
             </Link>
 
             {/* Desktop Links */}
             <div style={{
                 display: 'flex',
-                gap: '2rem',
+                gap: '1.5rem',
                 alignItems: 'center',
                 color: 'white'
             }}>
                 <Link href="/safety-plan" style={{ color: 'white', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>
-                    SAFETY PLAN
+                    {t.common.safetyPlan}
                 </Link>
                 <Link href="/rights" style={{ color: 'white', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>
-                    RIGHTS
+                    {t.common.rights}
                 </Link>
                 <Link href="/nearby" style={{ color: 'white', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>
-                    NEARBY
+                    {t.common.nearby}
                 </Link>
                 <Link href="/digital-security" style={{ color: 'white', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>
-                    SECURITY
+                    {t.common.security}
                 </Link>
+
+                <LanguageSwitcher />
 
                 <Link
                     href="/emergency"
@@ -66,7 +68,7 @@ export default function SimpleNavbar() {
                         textTransform: 'uppercase'
                     }}
                 >
-                    GET HELP
+                    {t.common.getHelp}
                 </Link>
             </div>
         </nav>

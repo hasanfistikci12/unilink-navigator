@@ -2,44 +2,22 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function SuccessStories() {
-    const stories = [
-        {
-            id: 1,
-            name: "Elif & Can",
-            image: "/story3.jpg",
-            text: "Unilink sayesinde güvenli bir sığınağa ulaştık. Artık korkmadan geleceğe bakabiliyoruz."
-        },
-        {
-            id: 2,
-            name: "Mehmet",
-            image: "/story2.jpg",
-            text: "Hukuki haklarımı bilmiyordum. Rehberler sayesinde sürecimi yönetebildim ve oturum iznimi aldım."
-        },
-        {
-            id: 3,
-            name: "Ayşe",
-            image: "/story1.jpg",
-            text: "Yalnız hissettiğim anda acil yardım butonu hayatımı kurtardı. Destek ekibi her an yanımdaydı."
-        },
-        {
-            id: 4,
-            name: "Selin",
-            image: "/story5.jpg",
-            text: "Dijital güvenlik önlemleriyle izimi kaybettirdim. Şimdi yeni bir şehirde, huzurlu bir hayatım var."
-        },
-        {
-            id: 5,
-            name: "Burak",
-            image: "/story4.jpg",
-            text: "Barınma sorunumu çözmekte çok zorlanıyordum. Platformdaki yönlendirmelerle kalacak yer buldum."
-        }
+    const { t } = useLanguage();
+
+    const storyImages = [
+        "/story3.jpg",
+        "/story2.jpg",
+        "/story1.jpg",
+        "/story5.jpg",
+        "/story4.jpg"
     ];
 
     return (
         <section style={{
-            backgroundColor: '#FF6B35', // Changed to Orange
+            backgroundColor: '#2391cc', // Changed to Brand Blue
             paddingTop: '10rem',
             paddingBottom: '10rem',
             position: 'relative',
@@ -69,7 +47,7 @@ export default function SuccessStories() {
                     color: '#ffffff',
                     textAlign: 'center'
                 }}>
-                    BAŞARI HİKAYELERİ
+                    {t.successStories.title}
                 </h2>
                 <p style={{
                     maxWidth: '800px',
@@ -80,16 +58,16 @@ export default function SuccessStories() {
                     letterSpacing: '0.01em',
                     textAlign: 'center'
                 }}>
-                    Herkesin bir hikayesi vardır. İşte Unilink ile hayatını değiştirenlerin ilham veren yolculukları.
+                    {t.successStories.subtitle}
                 </p>
             </div>
 
             <div className="stories-container mb-24 w-full">
-                {stories.map((story) => (
+                {t.successStories.stories.map((story: any, index: number) => (
                     <div
-                        key={story.id}
+                        key={index}
                         className="story-card"
-                        style={{ backgroundImage: `url(${story.image})` }}
+                        style={{ backgroundImage: `url(${storyImages[index] || '/story1.jpg'})` }}
                     >
                         <div className="story-content">
                             <span className="story-name">{story.name}</span>
@@ -111,7 +89,7 @@ export default function SuccessStories() {
             }}>
                 <Link href="/share-story" className="btn" style={{
                     backgroundColor: 'white', // Swapped to White
-                    color: '#FF6B35', // Swapped to Orange
+                    color: '#2391cc', // Swapped to Brand Blue
                     fontSize: '1.2rem',
                     fontWeight: 800,
                     padding: '1.3rem 4.5rem',
@@ -123,7 +101,7 @@ export default function SuccessStories() {
                     whiteSpace: 'nowrap',
                     letterSpacing: '0.02em'
                 }}>
-                    BİZE HİKAYENİ ANLAT
+                    {t.successStories.tellStory}
                 </Link>
 
                 <Link href="/stories" className="btn" style={{
@@ -139,7 +117,7 @@ export default function SuccessStories() {
                     whiteSpace: 'nowrap',
                     letterSpacing: '0.02em'
                 }}>
-                    TÜM HİKAYELER
+                    {t.successStories.allStories}
                 </Link>
             </div>
         </section>

@@ -3,15 +3,17 @@ interface EmergencyButtonProps {
     title: string;
     description: string;
     variant?: 'danger' | 'primary' | 'safe';
+    ariaLabelSuffix?: string;
 }
 
 export default function EmergencyButton({
     number,
     title,
     description,
-    variant = 'danger'
+    variant = 'danger',
+    ariaLabelSuffix = 'numarasını ara'
 }: EmergencyButtonProps) {
-    const numberColor = variant === 'danger' ? '#ef4444' : '#FF6B35';
+    const numberColor = variant === 'danger' ? '#ef4444' : '#2391cc';
 
     return (
         <a
@@ -30,7 +32,7 @@ export default function EmergencyButton({
                 border: '1px solid rgba(0, 0, 0, 0.05)',
             }}
             className="emergency-card-alt"
-            aria-label={`${title} - ${number} numarasını ara`}
+            aria-label={`${title} - ${number} ${ariaLabelSuffix}`}
         >
             <div style={{ textAlign: 'left' }}>
                 <div style={{

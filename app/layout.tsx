@@ -25,7 +25,6 @@ export default function RootLayout({
         <LanguageProvider>
           <SimpleNavbar />
           {/* <EmergencyHeader /> */}
-          {/* <LanguageSwitcher /> */}
           <main id="main-content">
             {children}
           </main>

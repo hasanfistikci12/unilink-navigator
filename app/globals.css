@@ -103,7 +103,7 @@ body {
   font-size: var(--font-size-base);
   line-height: 1.7;
   color: var(--color-text-primary);
-  background-color: #FF6B35;
+  background-color: #2391cc;
   /* Orange background as requested */
   min-height: 100vh;
 }
@@ -802,10 +802,10 @@ p {
 /* HERO TEXT */
 .text-mask-hero {
   font-family: 'Impact', 'Anton', 'Arial Black', 'Arial', sans-serif;
-  font-size: 11.5vw !important;
-  /* Reduced 20% again */
+  font-size: 6vw !important;
+  /* Significantly reduced for minimal look */
   font-weight: 900;
-  line-height: 0.95;
+  line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: -0.03em;
   display: block;
@@ -823,9 +823,9 @@ p {
 
 @media (min-width: 1024px) {
   .text-mask-hero {
-    font-size: 13vw !important;
-    /* Reduced 20% again */
-    line-height: 0.9;
+    font-size: 7vw !important;
+    /* Significantly reduced for minimal look */
+    line-height: 1.1;
   }
 }
 
@@ -941,4 +941,12 @@ p {
   .story-content {
     padding: 20px;
   }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
 }
